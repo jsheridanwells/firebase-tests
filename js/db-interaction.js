@@ -1,4 +1,13 @@
+'use strict';
 let $ = require('jquery');
-firebase = require('./fb-config');
+let firebase = require('./fb-config');
 
-// function getSongs
+function getData() {
+	return new Promise((resolve, reject)=> {
+		$.ajax({
+			url: `${firebase.getFBsettings().databaseURL}/songs.json`
+		}).done((data) => {
+			resolve(data);
+		});
+	});
+}
